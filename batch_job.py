@@ -1,3 +1,4 @@
+3.	Sample flow (no logging):
 from prefect import flow, task
 
 @task
@@ -13,7 +14,7 @@ def load(data):
     return f"{data}"  # logs will NOT appear in Prefect Cloud
 
 @flow
-def etl_flow(job_name: str = "Morning ETL"):
+def etl_flow(job_name: str = "Default Job"):
     raw = extract()
     processed = transform(raw)
     load(f"{job_name}: {processed}")
