@@ -8,3 +8,6 @@ def wait_task():
 @flow
 def wait_workflow():
     wait_task()
+@flow
+def my_flow():
+    return "Version 1"
