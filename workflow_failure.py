@@ -6,4 +6,4 @@ def retry_task():
 
 @flow
 def failure_workflow():
-    failing_task()
+    retry_task()
