@@ -7,11 +7,17 @@ def step_one():
     logger = get_run_logger()
     logger.info("Step 1: Job started")
 
-@task
+@task(
+    retries=1,              # 🔁 Retry count
+    retry_delay_seconds=5   # ⏱ Retry delay
+)
 def step_two():
     logger = get_run_logger()
+
     logger.info("Step 2: Processing...")
-    time.sleep(3)
+
+    # ❌ Intentional failure
+    raise Exception("Intentional failure to test retry")
 
 @task
 def step_three():
@@ -23,4 +29,5 @@ def my_job():
     step_one()
     step_two()
     step_three()
+
 my_job()
