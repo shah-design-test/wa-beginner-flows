@@ -1,4 +1,3 @@
-3.	Sample flow (no logging):
 from prefect import flow, task
 
 @task
@@ -12,6 +11,10 @@ def transform(data):
 @task
 def load(data):
     return f"{data}"  # logs will NOT appear in Prefect Cloud
+
+@task
+def load(data):
+    raise Exception("Simulated failure")
 
 @flow
 def etl_flow(job_name: str = "Default Job"):
